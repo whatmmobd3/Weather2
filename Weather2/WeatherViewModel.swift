@@ -1,14 +1,14 @@
 import Foundation
 
-private let defaultIcon = "?"
+//sunrise.fill
+
+private let defaultIcon = "cloud.sun.fill"
 
 private let iconMap = [
-    "Drizzle": "🌧",
-    "Thunderstorm" :"⚡️",
-    "Rain": "🌧",
-    "Snow": "☃",
-    "Clear": "☀️",
-    "Clouds": "☁️"
+    "Clear": "sunrise.fill",
+    "Rain": "cloud.rain.fill",
+    "Smoke": "smoke.fill",
+    "Clouds": "cloud.fill"
 ]
 
 public class WeatherViewModel: ObservableObject{

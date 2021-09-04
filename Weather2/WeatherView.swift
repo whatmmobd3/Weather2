@@ -4,25 +4,34 @@ struct WeatherView: View {
     @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
-        VStack {
-            Text(viewModel.cityName)
-                .font(.largeTitle)
-                .padding()
-            Text("\(viewModel.temperature)ºC")
-                .font(.system(size: 70))
-                .bold()
-            Text(viewModel.weatherIcon)
-                .font(.largeTitle)
-                .padding()
-            
-//            Image(systemName: "cloud.sun")
-//                .renderingMode(.original)
-//                .padding()
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color.blue, Color("lightblue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            VStack {
+                Text(viewModel.cityName)
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .padding()
                 
-            Text(viewModel.weatherDescription)
-        }.onAppear(perform: {
-            viewModel.refresh()
+                Text("\(viewModel.temperature)ºC")
+                    .font(.system(size: 70))
+                    .foregroundColor(.white)
+                    .bold()
+                
+                Image(systemName: viewModel.weatherIcon)
+                    .resizable()
+                    .renderingMode(.original)
+                    .frame(width: 150, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    
+                Text(viewModel.weatherDescription)
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(.white)
+            }.onAppear(perform: {
+                viewModel.refresh()
         })
+            .padding(.bottom,300)
+        }
     }
 }
 

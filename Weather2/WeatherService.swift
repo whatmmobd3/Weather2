@@ -26,14 +26,16 @@ public final class WeatherService: NSObject{
         URLSession.shared.dataTask(with: url){data, reponse, error in
             guard error == nil, let data = data else { return }
             if let response = try? JSONDecoder().decode(APIResponse.self, from: data){
+                print(response)
                 self.completionHandler?(Weather(response: response))
             }
+            
         }.resume()
     }
 }
 
 extension WeatherService: CLLocationManagerDelegate{
-    public func locationManger(
+    public func locationManager(
         _ manager:CLLocationManager,
         didUpdateLocations locations: [CLLocation]){
         guard let location = locations.first else {
@@ -42,7 +44,7 @@ extension WeatherService: CLLocationManagerDelegate{
         makeDataRequest(forCoordinates: location.coordinate)
     }
     
-    public func locationManger(
+    public func locationManager(
         _ manger: CLLocationManager,
         didFailWithError error: Error
     ){
