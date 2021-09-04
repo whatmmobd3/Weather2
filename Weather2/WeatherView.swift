@@ -9,9 +9,10 @@ struct ContentView: View {
             Text("25ºC")
                 .font(.system(size: 70))
                 .bold()
-            Image(systemName: "cloud.sun")
-                .renderingMode(.original)
-                .padding()
+            
+//            Image(systemName: "cloud.sun")
+//                .renderingMode(.original)
+//                .padding()
                 
             Text("Clear Sky")
         }

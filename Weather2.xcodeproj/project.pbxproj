@@ -13,6 +13,7 @@
 		FB96EE6C26E30677004F5656 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB96EE6B26E30677004F5656 /* Preview Assets.xcassets */; };
 		FB96EE7426E306C0004F5656 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB96EE7326E306C0004F5656 /* WeatherService.swift */; };
 		FB96EE7626E3083D004F5656 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB96EE7526E3083D004F5656 /* Weather.swift */; };
+		FB96EE7826E312CA004F5656 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB96EE7726E312CA004F5656 /* WeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FB96EE6D26E30677004F5656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB96EE7326E306C0004F5656 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		FB96EE7526E3083D004F5656 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		FB96EE7726E312CA004F5656 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				FB96EE6426E30675004F5656 /* WeatherApp.swift */,
 				FB96EE6626E30675004F5656 /* WeatherView.swift */,
+				FB96EE7726E312CA004F5656 /* WeatherViewModel.swift */,
 				FB96EE7526E3083D004F5656 /* Weather.swift */,
 				FB96EE7326E306C0004F5656 /* WeatherService.swift */,
 				FB96EE6826E30677004F5656 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB96EE7826E312CA004F5656 /* WeatherViewModel.swift in Sources */,
 				FB96EE7626E3083D004F5656 /* Weather.swift in Sources */,
 				FB96EE6726E30675004F5656 /* WeatherView.swift in Sources */,
 				FB96EE7426E306C0004F5656 /* WeatherService.swift in Sources */,
