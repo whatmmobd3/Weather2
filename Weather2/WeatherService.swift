@@ -1,50 +1,42 @@
-//{
-//  "coord": {
-//    "lon": -122.08,
-//    "lat": 37.39
-//  },
-//  "weather": [
-//    {
-//      "id": 800,
-//      "main": "Clear",
-//      "description": "clear sky",
-//      "icon": "01d"
-//    }
-//  ],
-//  "base": "stations",
-//  "main": {
-//    "temp": 282.55,
-//    "feels_like": 281.86,
-//    "temp_min": 280.37,
-//    "temp_max": 284.26,
-//    "pressure": 1023,
-//    "humidity": 100
-//  },
-//  "visibility": 16093,
-//  "wind": {
-//    "speed": 1.5,
-//    "deg": 350
-//  },
-//  "clouds": {
-//    "all": 1
-//  },
-//  "dt": 1560350645,
-//  "sys": {
-//    "type": 1,
-//    "id": 5122,
-//    "message": 0.0139,
-//    "country": "US",
-//    "sunrise": 1560343627,
-//    "sunset": 1560396563
-//  },
-//  "timezone": -25200,
-//  "id": 420006353,
-//  "name": "Mountain View",
-//  "cod": 200
-//  }
-
-                        
 import Foundation
+import CoreLocation
+
+public final class WeatherService: NSObject{
+    private let locationManager = CLLocationManager()
+    private let API_KEY = "15d720c336dd24d9479f904414a55b80"
+    private var completionHandler: ((Weather) -> Void)?
+    
+    public func loadWeatherData(_ completionHandler: @escaping((Weather) -> Void)){
+        self.completionHandler = completionHandler
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+//    https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-88.25&appid=15d720c336dd24d9479f904414a55b80
+    private func makeDataRequest(forCoordinates coordinates: CLLocationCoordinate2D){
+        guard let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(API_KEY)&units=metric"
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url){data, reponse, error in
+            guard error == nil, let data = data else { return }
+            if let response = try? JSONDecoder().decode(APIResponse.self, from: data){
+                self.completionHandler?(Weather(response: response))
+            }
+        }.resume()
+    }
+}
+
+
+struct APIResponse: Decodable {
+    let name: String
+    let main: APIMain
+    let weather: [APIWeather]
+}
+
+struct APIMain: Decodable{
+    let temp: Double
+}
 
 struct APIWeather: Decodable{
     let description: String
